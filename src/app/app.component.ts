@@ -1,4 +1,4 @@
-// app.components é o controlador
+// app.components é o controlador da pagina app.html
 // Faz o controle do menu
 
 import { Component, ViewChild } from '@angular/core';
@@ -15,9 +15,9 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: string = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: string}>;
 
   //Construtor da classe
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
@@ -25,7 +25,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage }
+      { title: 'Home', component: 'HomePage' }
     ];
 
   }
