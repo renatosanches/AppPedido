@@ -7,7 +7,7 @@
 * Dev: Renato Sanches
  -->
 
-  <h3>App Pedido</h3>
+  <h3>App Pedidos</h3>
  
    <h3>Seja Bem vindo</h3>
  
@@ -17,11 +17,13 @@
   <form>
     <ion-item>
       <ion-label stacked>Email</ion-label>
-      <ion-input type="text"></ion-input>
+      <!-- Faz Bindind com o objeto creds.email -->
+      <ion-input [(ngModel)]="creds.email" name="email" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Senha</ion-label>
-      <ion-input type="password"></ion-input>
+      <!-- Faz Bindind com o objeto creds.senha -->
+      <ion-input [(ngModel)]="creds.senha" name="senha" type="password"></ion-input>
     </ion-item>    
     <button ion-button block (click)="login()">Entrar</button>
   </form>
