@@ -10,4 +10,14 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <!-- percorre a lista de categorias e interpola dados do html e do controlador categorias.ts-->
+    <button ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img src="{{bucketUrl}}/cat{{item.id}}.jpg">
+      </ion-thumbnail>
+      <h2> {{ item.nome }} </h2>
+    </button>
+  </ion-list>
+
 </ion-content>
