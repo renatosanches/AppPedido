@@ -1,3 +1,10 @@
+/* 
+* App Pedido - XP IT Tecnologia - Front End
+* Typescript
+* Classe: HomePage
+* Dev: Renato Sanches
+*/
+
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 // Controlador da view que é o home.html
@@ -13,6 +20,10 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
 
+  }
+
+  login() {
+    this.navCtrl.setRoot('CategoriasPage');
   }
 
 }

@@ -1,18 +1,24 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>App Pedido | XP IT Tecnologia</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  <h3>Seja Bem vindo</h3>
+  
+  <h3>App Pedido</h3>
+ 
+   <h3>Seja Bem vindo</h3>
+ 
+  <img src="assets/imgs/tela-inicial.png" alt="App Pedido"> 
+  <img src="assets/imgs/xpit-logo.png" alt="XP IT Tecnologia"> 
+  
+  <form>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Senha</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>    
+    <button ion-button block (click)="login()">Entrar</button>
+  </form>
+  <button ion-button block outline>Registrar</button>
+  
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
