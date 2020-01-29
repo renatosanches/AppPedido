@@ -8,6 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- Interpolacao para mostrar email -->
-{{ email }}
+  <!-- ion-avatar para mostrar os dados do cliente -->
+  <ion-avatar>
+    <!-- operador ternario busca imagem do cliente ou mostra o avatar branco -->
+    <img class="circle" [src]="cliente?.imageUrl || 'assets/imgs/avatar-blank.png'">
+  </ion-avatar>
+  <h2 text-center>{{cliente?.nome}}</h2>
+  <p text-center>{{cliente?.email}}</p>
 </ion-content>
