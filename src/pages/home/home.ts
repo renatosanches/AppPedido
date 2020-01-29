@@ -53,6 +53,11 @@ constructor(
       error => {});  
   }
 
+  // carrega a SignupPage
+  signup() {
+    this.navCtrl.push('SignupPage');
+  }
+
   //chama authenticate no método login
   //No login acessa CategoriasPage
   login() {
