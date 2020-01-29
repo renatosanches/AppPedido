@@ -13,14 +13,7 @@ export class ClienteService {
     // metodo findByEmail para cliente
     findByEmail(email: string) : Observable<ClienteDTO> {
       
-        //pegando o token
-        let token = this.storage.getLocalUser().token;
-        //contruindo o cabecalho com o token jwt
-        let authHeader = new HttpHeaders({'Authorization': 'Bearer ' + token});
-
-        return this.http.get<ClienteDTO>(
-            `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,
-            {'headers': authHeader});
+        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
     //metodo para obter a imagem do bucket AWS

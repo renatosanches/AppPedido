@@ -27,7 +27,7 @@ export class ProfilePage {
     if (localUser && localUser.email) {
       //busca cliente
       this.clienteService.findByEmail(localUser.email)
-      // se insvreve para receber a reposta
+      // se inscreve para receber a reposta
         .subscribe(response => {
           //busca imagem
           this.cliente = response;
