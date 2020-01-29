@@ -43,6 +43,16 @@ constructor(
     this.menu.swipeEnable(true);
   }
 
+  //evento ionViewDidEnter chama o refresh token - verifica se o token é valido e carrega as  credenciais 
+  ionViewDidEnter() {
+    this.auth.refreshToken()
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+      error => {});  
+  }
+
   //chama authenticate no método login
   //No login acessa CategoriasPage
   login() {

@@ -26,6 +26,18 @@ export class AuthService {
             });
     }
 
+    //metodo para manter os dados de credenciais para um token jwt ainda valido
+    refreshToken() {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/auth/refresh_token`, 
+            {},
+            {
+                observe: 'response',
+                responseType: 'text'
+            });
+    }
+
+
     // metodo successfulLogin que ira pegar o token jwt tirando a palavra beaver e pega o email do user
     successfulLogin(authorizationValue : string) {
         let tok = authorizationValue.substring(7);
