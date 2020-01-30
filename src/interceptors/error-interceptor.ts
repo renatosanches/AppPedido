@@ -3,6 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS
 import { Observable } from 'rxjs/Rx'; // IMPORTANTE: IMPORT ATUALIZADO
 import { StorageService } from '../services/storage.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { FieldMessage } from '../models/fieldmessage';
 
 /* 
 * App Pedido - XP IT Tecnologia - Front End
@@ -43,6 +44,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.handle403();
                 break;
 
+                // Tratamento do Erro 422 unprocessable Entity do back end
+                case 422:
+                this.handle422(errorObj);
+                break;
+
                 //erros gerais
                 default:
                 this.handleDefaultEror(errorObj);
@@ -72,6 +78,21 @@ export class ErrorInterceptor implements HttpInterceptor {
         alert.present();
     }
 
+    // funcao auxiliar erro 422 - Validação
+    handle422(errorObj) {
+        let alert = this.alertCtrl.create({
+            title: 'Erro 422: Validação',
+            message: this.listErrors(errorObj.errors),
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
+    }
+
     // Tratamento de outros erros
     handleDefaultEror(errorObj) {
         let alert = this.alertCtrl.create({
@@ -86,6 +107,16 @@ export class ErrorInterceptor implements HttpInterceptor {
         });
         alert.present();        
     }
+
+    //lista de erros de validacao do formulario para o alert 
+    private listErrors(messages : FieldMessage[]) : string {
+        let s : string = '';
+        for (var i=0; i<messages.length; i++) {
+            s = s + '<p><strong>' + messages[i].fieldName + "</strong>: " + messages[i].message + '</p>';
+        }
+        return s;
+    }
+
 }
 
 // Declaracao provider do interceptor 

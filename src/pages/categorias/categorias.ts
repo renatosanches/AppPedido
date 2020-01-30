@@ -37,4 +37,9 @@ export class CategoriasPage {
       error => {});
     }
 
+    //Mostra o produto
+    showProdutos() {
+      this.navCtrl.push('ProdutosPage');    
+    }
+
   }
