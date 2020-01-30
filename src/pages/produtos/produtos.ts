@@ -42,5 +42,8 @@ export class ProdutosPage {
         error => {});
     }
   }  
-      
+  //metodo para abir a pagina de detalhes do produto
+  showDetail() {
+    this.navCtrl.push('ProdutoDetailPage');
+  }    
 }
