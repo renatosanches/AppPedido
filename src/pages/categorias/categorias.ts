@@ -4,6 +4,7 @@ import { CategoriaService } from '../../services/domain/categoria.service';
 import { CategoriaDTO } from '../../models/categoria.dto';
 import { API_CONFIG } from '../../config/api.config';
 
+
 /* 
 * App Pedido - XP IT Tecnologia - Front End
 * Typescript
@@ -37,9 +38,9 @@ export class CategoriasPage {
       error => {});
     }
 
-    //Mostra o produto
-    showProdutos() {
-      this.navCtrl.push('ProdutosPage');    
+    //Mostra Pagina de produto passando o codigo da categoria com push
+    showProdutos(categoria_id : string) {
+      this.navCtrl.push('ProdutosPage', {categoria_id: categoria_id});     
     }
 
   }
