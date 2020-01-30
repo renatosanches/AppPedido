@@ -42,8 +42,8 @@ export class ProdutosPage {
         error => {});
     }
   }  
-  //metodo para abir a pagina de detalhes do produto
-  showDetail() {
-    this.navCtrl.push('ProdutoDetailPage');
+  //metodo para abrir a pagina de detalhes do produto 
+  showDetail(produto_id : string) {
+    this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id});
   }    
 }
