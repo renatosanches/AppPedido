@@ -11,6 +11,7 @@ import { CameraOptions, Camera } from '@ionic-native/camera';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
+
 export class ProfilePage {
 
   //dado disponivel do controlador
@@ -27,22 +28,26 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+  
+  loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       //busca cliente
       this.clienteService.findByEmail(localUser.email)
-      // se inscreve para receber a reposta
+        // se inscreve para receber a reposta
         .subscribe(response => {
           //busca imagem
           this.cliente = response as ClienteDTO;
           this.getImageIfExists();
         },
-        error => {
-          //faz redirecionamento para a homepage em caso de erro 403 
-          if (error.status == 403) {
-            this.navCtrl.setRoot('HomePage');
-          }
-        });
+          error => {
+            //faz redirecionamento para a homepage em caso de erro 403 
+            if (error.status == 403) {
+              this.navCtrl.setRoot('HomePage');
+            }
+          });
     }
     else {
       //Para caso ocorra problem de token
@@ -53,10 +58,10 @@ export class ProfilePage {
   //metodo para obter a imagem do bucket
   getImageIfExists() {
     this.clienteService.getImageFromBucket(this.cliente.id)
-    .subscribe(response => {
-      this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
-    },
-    error => {});
+      .subscribe(response => {
+        this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
+      },
+        error => { });
   }
 
   // Carregar imagem da camera 
@@ -72,11 +77,24 @@ export class ProfilePage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-     this.picture = 'data:image/png;base64,' + imageData;
-     this.cameraOn = false;
+      this.picture = 'data:image/png;base64,' + imageData;
+      this.cameraOn = false;
     }, (err) => {
     });
   }
+  // Envia imagem para profile
+  sendPicture() {
+    this.clienteService.uploadPicture(this.picture)
+      .subscribe(response => {
+        this.picture = null;
+        this.loadData();
+      },
+        error => {
+        });
+  }
 
+  cancel() {
+    this.picture = null;
+  }
 }
 
