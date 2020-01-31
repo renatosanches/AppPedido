@@ -31,7 +31,7 @@ export class PickAddressPage {
       this.clienteService.findByEmail(localUser.email)
         .subscribe(response => {
           this.items = response['enderecos'];
-          
+
           let cart = this.cartService.getCart();
 
           this.pedido = {
@@ -55,7 +55,8 @@ export class PickAddressPage {
 
   nextPage(item: EnderecoDTO) {
     this.pedido.enderecoDeEntrega = {id: item.id};
-    console.log(this.pedido); 
+    // Faz navecagao passando dados do pedido 
+    this.navCtrl.push('PaymentPage', {pedido: this.pedido}); 
   }
 
 }
