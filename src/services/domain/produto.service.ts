@@ -10,9 +10,9 @@ export class ProdutoService {
   constructor(public http: HttpClient) {
   }
 
-  //faz busca de categoria no endpoint
-  findByCategoria(categoria_id : string) {
-    return this.http.get(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}`);
+  //faz busca de categoria no endpoint com paginacao configurada conforme esta camada
+  findByCategoria(categoria_id : string, page : number = 0, linesPerPage : number = 24) {
+    return this.http.get(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}&page=${page}&linesPerPage=${linesPerPage}`);
   }
   
   //faz busca do produto por id
