@@ -11,9 +11,8 @@ export class ClienteService {
     constructor(public http: HttpClient, public storage: StorageService) {
     }
     // metodo findByEmail para cliente
-    findByEmail(email: string) : Observable<ClienteDTO> {
-      
-        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
+    findByEmail(email: string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
     //metodo para obter a imagem do bucket AWS

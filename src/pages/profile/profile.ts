@@ -30,7 +30,7 @@ export class ProfilePage {
       // se inscreve para receber a reposta
         .subscribe(response => {
           //busca imagem
-          this.cliente = response;
+          this.cliente = response as ClienteDTO;
           this.getImageIfExists();
         },
         error => {
