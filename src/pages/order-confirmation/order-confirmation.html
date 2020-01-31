@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content padding>
-
+  <!-- Controlando conteudo - Mostra se nao houver Pedido confirmado -->
   <div *ngIf="!codpedido">
     <ion-card>
       <ion-card-header>
@@ -76,7 +76,7 @@
     <button ion-button block outline (click)="back()">Voltar</button>
   </div>
 
-  <!-- Confirmacao do pedido  -->
+  <!-- Confirmacao do pedido so mostra se houver pedido realizado -->
   <div *ngIf="codpedido">
     <ion-card>
       <ion-card-header>

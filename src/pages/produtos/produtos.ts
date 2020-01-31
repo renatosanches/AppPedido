@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProdutoDTO } from '../../models/produto.dto';
 import { API_CONFIG } from '../../config/api.config';
 import { ProdutoService } from '../../services/domain/produto.service';
@@ -16,20 +16,31 @@ export class ProdutosPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public produtoService: ProdutoService) {
+    public produtoService: ProdutoService,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     // Carrega produtos conforme a categoria categoria_id
     let categoria_id = this.navParams.get('categoria_id');
+    let loader = this.presentLoading();
     this.produtoService.findByCategoria(categoria_id)
       .subscribe(response => {
         // traz so o atributo content do backend
         this.items = response['content'];
+        //Fecha Tela de Espera
+        loader.dismiss();
         //carrega as imagens dos produtos
         this.loadImageUrls();
       },
-      error => {});
+      error => {
+        //Fecha Tela de Espera
+        loader.dismiss();
+      });
   }
 // metodo que carrega imagens dos produtos do bucket aws
   loadImageUrls() {
@@ -45,5 +56,23 @@ export class ProdutosPage {
   //metodo para abrir a pagina de detalhes do produto 
   showDetail(produto_id : string) {
     this.navCtrl.push('ProdutoDetailPage', {produto_id: produto_id});
-  }    
+  }   
+  
+  // Chama Tela de Espera
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
+  }
+
+  // Faz refresh para recarregar os dados quando chega no topo de pagina
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
+
 }
