@@ -4,11 +4,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Categorias</ion-title>
+    <ion-title><ion-icon name="pricetags"></ion-icon> Loja</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
+  </ion-fab>
 
   <ion-list>
     <!-- percorre a lista de categorias e interpola dados do html e do controlador categorias.ts com bindind produtos paasando o item.id-->

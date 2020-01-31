@@ -30,8 +30,9 @@ export class MyApp {
 
     // Mostra as páginas de navegacao
     this.pages = [
-      { title: 'Profile', component: 'ProfilePage' },
-      { title: 'Categorias', component: 'CategoriasPage' },
+      { title: 'Meu Perfil', component: 'ProfilePage' },
+      { title: 'Loja', component: 'CategoriasPage' },
+      { title: 'Carrinho', component: 'CartPage'},
       { title: 'Logout', component: ''}
       
     ];
